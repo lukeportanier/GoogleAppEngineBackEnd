@@ -30,9 +30,9 @@ def GenerateNumbers():
     bucket = storage_client.get_bucket(random_numbers_storage)
 
     blob = bucket.blob('random_numbers.txt')
-    blob.upload_from_string('\n'.join(str(number) for number in random_numbers))
+    blob.upload_from_string(','.join(str(number) for number in random_numbers))
     
-    return 'Random Numbers Have Been Generated' + random_numbers
+    return 'Random Numbers Have Been Generated'
 
 @app.route('/GetResults')
 def GetResults():
@@ -41,7 +41,7 @@ def GetResults():
 
     blob = bucket.blob('random_numbers.txt')
     content = blob.download_as_string().decode('utf-8')
-    random_numbers = [int(number) for number in content.split('\n') if number]
+    random_numbers = [int(number) for number in content.split(',') if number]
 
     largest = max(random_numbers)
     smallest = min(random_numbers)
