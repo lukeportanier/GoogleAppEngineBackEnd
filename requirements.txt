@@ -4,3 +4,4 @@ Flask-Cors==3.0.10
 gcloud==0.18.3
 googleapis-common-protos==1.56.1
 google
+google-auth
