@@ -14,6 +14,8 @@ def GenerateRandomNumbers():
 from flask import Flask
 from gcloud import storage
 import requests
+from google.auth import compute_engine
+import google.auth.transport.requests as requests
 
 app = Flask(__name__)
 
@@ -25,8 +27,13 @@ def root():
 
 @app.route('/GenerateNumbers')
 def GenerateNumbers():
-    instance_id = requests.get('http://metadata.google.internal/computeMetadata/v1/instance/id', headers={'Metadata-Flavor': 'Google'}).text
-    random_numbers = [random.randint(0,100000) for i in range(10000)]
+    credentials = compute_engine.Credentials()
+    metadata_headers = {'Metadata-Flavor': 'Google'}
+    url = 'http://metadata.google.internal/computeMetadata/v1/instance/id'
+    response = requests.get(url, headers=metadata_headers, credentials=credentials)
+
+    instance_id = response.content.decode()
+    random_numbers = [random.randint(0,1000) for i in range(100000)]
     numbers_with_instance_id = [f'{number}, {instance_id}' for number in random_numbers]
     blob_name = 'random_numbers_with_instance_id.txt'
 
