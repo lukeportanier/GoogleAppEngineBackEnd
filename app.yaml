@@ -6,5 +6,5 @@ automatic_scaling:
   max_instances: 10
 
 handlers:
-- url: /.*
-  script: auto
+  - url: /.*
+    script: auto
