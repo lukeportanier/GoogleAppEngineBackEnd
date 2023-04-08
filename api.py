@@ -20,6 +20,10 @@ CORS(app, '*')
 
 random_numbers_storage = 'random-numbers-storage'
 
+@app.route('/')
+def root():
+    return 'This is the Api'
+
 @app.route('/GenerateNumbers')
 def GenerateNumbers():
     random_numbers = [random.randint(0,100000) for i in range(1000)]
