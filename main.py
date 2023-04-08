@@ -30,9 +30,9 @@ def GenerateNumbers():
     bucket = storage_client.get_bucket(random_numbers_storage)
 
     blob = bucket.blob('random_numbers.txt')
-    blob.upload_from_string('n'.join(str(number) for number in random_numbers))
+    blob.upload_from_string('\n'.join(str(number) for number in random_numbers))
     
-    return 'Random Numbers Have Been Generated'
+    return 'Random Numbers Have Been Generated' + random_numbers
 
 @app.route('/GetResults')
 def GetResults():
