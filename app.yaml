@@ -6,15 +6,5 @@ automatic_scaling:
   max_instances: 10
 
 handlers:
-- url: /css
-  static_dir: css
-
-- url: /js
-  static_dir: js
-
-- url: /images
-  static_dir: images
-
 - url: /.*
-  static_files: index.html
-  upload: index.html
+  script: auto
