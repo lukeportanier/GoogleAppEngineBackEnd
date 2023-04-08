@@ -13,10 +13,8 @@ def GenerateRandomNumbers():
 
 from flask import Flask
 from google.cloud import storage
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, '*')
 
 random_numbers_storage = 'random-numbers-storage'
 
