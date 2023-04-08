@@ -14,6 +14,7 @@ def GenerateRandomNumbers():
 from flask import Flask
 from google.cloud import storage
 
+
 app = Flask(__name__)
 
 random_numbers_storage = 'random-numbers-storage'
