@@ -24,7 +24,7 @@ def root():
 
 @app.route('/GenerateNumbers')
 def GenerateNumbers():
-    random_numbers = [random.randint(0,100000) for i in range(1000)]
+    random_numbers = [random.randint(0,1000) for i in range(100000)]
 
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(random_numbers_storage)
