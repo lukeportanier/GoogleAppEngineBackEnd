@@ -1,6 +1,5 @@
 runtime: python37
 service: api
-entrypoint: gunicorn -w 4 -b :$PORT api:app
 
 automatic_scaling:
   min_instances: 2
