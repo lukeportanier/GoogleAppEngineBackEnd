@@ -1,6 +1,9 @@
 runtime: python37
 service: api
 
+beta_settings:
+  cloud_sql_instances: "cloud-test-1232:europe-west1:db-instance"
+
 automatic_scaling:
   min_instances: 2
   max_instances: 10
