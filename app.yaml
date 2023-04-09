@@ -1,12 +1,13 @@
-runtime: python37
+runtime: python
 service: api
+env: flex
 
 beta_settings:
   cloud_sql_instances: "cloud-test-1232:europe-west1:db-instance"
 
 automatic_scaling:
-  min_instances: 5
-  max_instances: 15
+  min_num_instances: 5
+  max_num_instances: 15
 
 handlers:
   - url: /.*
