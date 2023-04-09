@@ -1,8 +1,3 @@
 Flask
-Flask-Cors
 gcloud
-googleapis-common-protos
-google
-google.cloud
-google-auth
 pymysql
