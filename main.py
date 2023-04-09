@@ -22,11 +22,17 @@ def GenerateNumbers():
     # Store the random number and instance ID in the format of "number|instance"
     content = f"{random_number}|{instance_id},"
 
-    # Upload the content to Google Cloud Storage
+    # Retrieve existing content from Google Cloud Storage
     storage_client = storage.Client()
     bucket = storage_client.get_bucket("random-numbers-storage")
     blob = bucket.blob("random_numbers.txt")
-    blob.upload_from_string(content)
+    existing_content = blob.download_as_string()
+
+    # Append new content to the existing content
+    updated_content = existing_content + content.encode()
+
+    # Upload the updated content to Google Cloud Storage
+    blob.upload_from_string(updated_content)
 
     return f"Random Number {random_number} Has Been Generated and Stored in Google Cloud Storage"
 
