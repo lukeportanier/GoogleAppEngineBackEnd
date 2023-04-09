@@ -1,38 +1,35 @@
-#End Points
-
 import os
 import random
 from flask import Flask
-from gcloud import storage
+import mysql.connector
 
-app = Flask(__name__)
-
-@app.route("/")
-def index():
-    instance_id = os.environ.get("GAE_INSTANCE", "unknown")
-    return "Instance_Id: "+instance_id
-
-#End Points
-
-import os
-import random
-from flask import Flask
-import pymysql
-
-DB_HOST = "cloud-test-1232:europe-west1:db-instance"
+# Configure the database connection
 DB_USER = "api"
 DB_PASSWORD = "YOtaPe7zrDlb0BiIMFCxmpSt"
 DB_NAME = "random-number-storage"
-TABLE_NAME = "storagedata"
+CLOUD_SQL_CONNECTION_NAME = "your-project-id:your-region:your-cloud-sql-instance"
 
 app = Flask(__name__)
+
+# Create a function to connect to the database
+def get_db():
+    # Configure the database connection
+    config = {
+        "user": DB_USER,
+        "password": DB_PASSWORD,
+        "database": DB_NAME,
+        "unix_socket": f"/cloudsql/{CLOUD_SQL_CONNECTION_NAME}"
+    }
+
+    # Connect to the database using the Cloud SQL Proxy
+    return mysql.connector.connect(**config)
 
 @app.route("/")
 def index():
     instance_id = os.environ.get("GAE_INSTANCE", "unknown")
     return "Instance_Id: "+instance_id
 
-app.route("/GenerateNumbers")
+@app.route("/GenerateNumbers")
 def GenerateNumbers():
     instance_id = os.environ.get("GAE_INSTANCE", "unknown")
 
@@ -40,9 +37,9 @@ def GenerateNumbers():
     random_number = random.randint(0, 100000)
 
     # Insert the random number and instance ID into the database
-    conn = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME)
+    conn = get_db()
     cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO {TABLE_NAME} (number, instance_id) VALUES ({random_number}, '{instance_id}')")
+    cursor.execute(f"INSERT INTO storagedata (number, instance_id) VALUES ({random_number}, '{instance_id}')")
     conn.commit()
     conn.close()
 
@@ -52,11 +49,11 @@ def GenerateNumbers():
 @app.route('/GetResults')
 def GetResults():
     # Connect to the database
-    conn = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME)
+    conn = get_db()
 
     # Query the database to get the smallest and largest numbers and their instance IDs
     with conn.cursor() as cursor:
-        cursor.execute(f"SELECT number, instance FROM {TABLE_NAME}")
+        cursor.execute(f"SELECT number, instance FROM storagedata")
         results = cursor.fetchall()
         random_numbers_with_instance = [f"{row[0]}|{row[1]}" for row in results]
 
