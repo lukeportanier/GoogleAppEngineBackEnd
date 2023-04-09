@@ -2,7 +2,6 @@
 
 import os
 import random
-from gcloud import memcache
 from flask import Flask
 from pymemcache.client.base import Client
 
