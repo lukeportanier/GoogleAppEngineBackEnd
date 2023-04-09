@@ -30,7 +30,7 @@ def GenerateNumbers():
 
     # Concatenate random numbers and instance ID with the pipe character '|'
     random_numbers_with_instance = [f"{number}|{instance_id}" for number in random_numbers]
-    content = '\n'.join(random_numbers_with_instance)
+    content = ','.join(random_numbers_with_instance)
 
     # Upload random numbers to Google Cloud Storage
     storage_client = storage.Client()
@@ -47,7 +47,7 @@ def GetResults():
     bucket = storage_client.get_bucket(random_numbers_storage)
     blob = bucket.blob('random_numbers.txt')
     content = blob.download_as_string().decode('utf-8')
-    random_numbers_with_instance = content.split('\n')
+    random_numbers_with_instance = content.split(',')
 
     # Display smallest and largest numbers with their respective instance IDs
     smallest_number_with_instance = min(random_numbers_with_instance)
