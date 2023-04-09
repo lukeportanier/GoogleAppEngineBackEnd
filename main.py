@@ -3,7 +3,7 @@
 import os
 import random
 from flask import Flask
-from pymemcache.client.base import Client
+#from pymemcache.client.base import Client
 
 app = Flask(__name__)
 
