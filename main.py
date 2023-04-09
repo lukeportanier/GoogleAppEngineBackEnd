@@ -33,10 +33,10 @@ def GenerateNumbers():
     content = ','.join(random_numbers_with_instance)
 
     # Upload random numbers to Google Cloud Storage
-    storage_client = storage.Client()
-    bucket = storage_client.get_bucket(random_numbers_storage)
-    blob = bucket.blob('random_numbers.txt')
-    blob.upload_from_string(content)
+    #storage_client = storage.Client()
+    #bucket = storage_client.get_bucket(random_numbers_storage)
+    #blob = bucket.blob('random_numbers.txt')
+    #blob.upload_from_string(content)
 
     return 'Random Numbers Have Been Generated'
 
