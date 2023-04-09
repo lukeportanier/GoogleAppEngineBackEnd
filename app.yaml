@@ -1,6 +1,5 @@
-runtime: python
+runtime: python37
 service: api
-env: flex
 
 beta_settings:
   cloud_sql_instances: "cloud-test-1232:europe-west1:db-instance"
