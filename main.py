@@ -26,17 +26,17 @@ def GenerateNumbers():
     instance_id = os.environ.get("GAE_INSTANCE", "unknown")
 
     # Generate random numbers
-    random_numbers = [random.randint(0,1000) for i in range(100000)]
+    random_numbers = [random.randint(0,1000) for i in range(100)]
 
     # Concatenate random numbers and instance ID with the pipe character '|'
     random_numbers_with_instance = [f"{number}|{instance_id}" for number in random_numbers]
     content = ','.join(random_numbers_with_instance)
 
     # Upload random numbers to Google Cloud Storage
-    #storage_client = storage.Client()
-    #bucket = storage_client.get_bucket(random_numbers_storage)
-    #blob = bucket.blob('random_numbers.txt')
-    #blob.upload_from_string(content)
+    storage_client = storage.Client()
+    bucket = storage_client.get_bucket(random_numbers_storage)
+    blob = bucket.blob('random_numbers.txt')
+    blob.upload_from_string(content)
 
     return 'Random Numbers Have Been Generated'
 
