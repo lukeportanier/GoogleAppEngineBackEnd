@@ -26,7 +26,7 @@ def GenerateNumbers():
     instance_id = os.environ.get("GAE_INSTANCE", "unknown")
 
     # Generate random numbers
-    random_numbers = [random.randint(0,1000) for i in range(100)]
+    random_numbers = [random.randint(0,100000) for i in range(10000)]
 
     # Concatenate random numbers and instance ID with the pipe character '|'
     random_numbers_with_instance = [f"{number}|{instance_id}" for number in random_numbers]
