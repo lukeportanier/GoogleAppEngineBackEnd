@@ -1,8 +1,7 @@
-flash==1.0.3
-Flask==2.1.2
-Flask-Cors==3.0.10
-gcloud==0.18.3
-googleapis-common-protos==1.56.1
+Flask
+Flask-Cors
+gcloud
+googleapis-common-protos
 google
 google.cloud
 google-auth
