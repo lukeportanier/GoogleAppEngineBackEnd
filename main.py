@@ -1,14 +1,3 @@
-#Functions
-
-import random
-
-def GenerateRandomNumbers():
-    random_numbers = []
-    for i in range(10000):
-        random_numbers.append(random.randint(0, 100000))
-
-    return random_numbers
-
 #End Points
 
 from flask import Flask
@@ -18,13 +7,22 @@ app = Flask(__name__)
 
 random_numbers_storage = 'random-numbers-storage'
 
-@app.route('/')
-def root():
-    return 'This is the Api'
+import google.auth
+from google.auth.compute_engine import Credentials
+from flask import Flask
+import os
+import random
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    instance_id = os.environ.get("GAE_INSTANCE", "unknown")
+    return "Instance_Id: "+instance_id
 
 @app.route('/GenerateNumbers')
 def GenerateNumbers():
-    random_numbers = [random.randint(0,100000) for i in range(10000)]
+    random_numbers = [random.randint(0,1000) for i in range(100000)]
 
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(random_numbers_storage)
