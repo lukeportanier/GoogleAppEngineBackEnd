@@ -1,12 +1,5 @@
 #End Points
 
-app = Flask(__name__)
-
-@app.route("/")
-def index():
-    instance_id = os.environ.get("GAE_INSTANCE", "unknown")
-    return "Instance_Id: "+instance_id
-
 import os
 import random
 from gcloud import memcache
@@ -14,7 +7,11 @@ from flask import Flask
 from pymemcache.client.base import Client
 
 app = Flask(__name__)
-memcache_client = memcache.Client()
+
+@app.route("/")
+def index():
+    instance_id = os.environ.get("GAE_INSTANCE", "unknown")
+    return "Instance_Id: "+instance_id
 
 @app.route("/GenerateNumbers")
 def GenerateNumbers():
