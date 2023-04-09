@@ -6,5 +6,4 @@ googleapis-common-protos==1.56.1
 google
 google.cloud
 google-auth
-requests
 pymysql
