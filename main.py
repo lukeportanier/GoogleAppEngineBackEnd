@@ -60,8 +60,8 @@ def GetResults():
 
         cursor.execute("SELECT number, instance FROM storagedata WHERE number = (SELECT MAX(number) FROM storagedata)")
         result = cursor.fetchall()
-        largest_number = result[0]
-        largest_instance = result[1]
+        largest_number = result[0][0]
+        largest_instance = result[0][1]
 
     # Close the database connection
     conn.close()
