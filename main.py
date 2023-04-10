@@ -46,6 +46,7 @@ def GenerateNumbers():
     # Return a response to the client
     return f"Random Number {random_number} Has Been Generated and Stored in MySQL Database"
 
+@app.route("/GetResults")
 def GetResults():
     # Connect to the database
     conn = get_db()
