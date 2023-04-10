@@ -52,11 +52,11 @@ def GetResults():
     conn = get_db()
 
     #Variables
-    smallest_number
-    smallest_instance
-    largest_number
-    largest_instance
-    html_table
+    smallest_number = 0
+    smallest_instance = 0
+    largest_number = 0
+    largest_instance = 0
+    html_table = ""
 
     # Query the database to get the smallest and largest numbers and their instance IDs
     with conn.cursor() as cursor:
