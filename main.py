@@ -39,7 +39,7 @@ def GenerateNumbers():
     # Insert the random number and instance ID into the database
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO storagedata (number, instance_id) VALUES ({random_number}, '{instance_id}')")
+    cursor.execute(f"INSERT INTO storagedata (number, instance) VALUES ({random_number}, '{instance_id}')")
     conn.commit()
     conn.close()
 
