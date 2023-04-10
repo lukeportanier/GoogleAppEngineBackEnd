@@ -8,7 +8,6 @@ automatic_scaling:
   min_instances: 5
   max_instances: 15
   target_cpu_utilization: 0.7
-  target_throughput_utilization: 100
   max_concurrent_requests: 50
 
 handlers:
