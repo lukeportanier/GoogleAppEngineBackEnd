@@ -7,7 +7,7 @@ import mysql.connector
 DB_USER = "api"
 DB_PASSWORD = "YOtaPe7zrDlb0BiIMFCxmpSt"
 DB_NAME = "random-number-storage"
-CLOUD_SQL_CONNECTION_NAME = "your-project-id:your-region:your-cloud-sql-instance"
+CLOUD_SQL_CONNECTION_NAME = "cloud-test-1232:europe-west1:db-instance"
 
 app = Flask(__name__)
 
