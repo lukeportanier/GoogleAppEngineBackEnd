@@ -78,7 +78,7 @@ def GetResults():
 
     return smallest_largest_message + "<br><br><br>" + html_table
 
-@app.route("/DeleteAllRows", methods=["POST"])
+@app.route("/DeleteAllRows")
 def delete_all_rows():
     conn = get_db()
 
